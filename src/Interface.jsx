@@ -19,7 +19,7 @@ function Interface (props) {
         var xhr = new XMLHttpRequest();
         xhr.open("POST", url);
         xhr.setRequestHeader("Content-Type", "application/json");
-        xhr.setRequestHeader("Authorization", `Bearer ${process.env.open_ai}`);
+        xhr.setRequestHeader("Authorization", `Bearer ${process.env.OPENAI_KEY}`);
         xhr.upload.addEventListener("progress", function (event) {
             if (event.lengthComputable) {
                 setLoading(event.loaded / event.total * 100 | 5);
