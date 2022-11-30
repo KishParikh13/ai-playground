@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 import Interface from "./Interface.jsx"
 
 function App() {
-  const [selectedApp, setSelectedApp] = useState(0)
+  const [selectedApp, setSelectedApp] = useState(-1)
 
   const apps = [
     {
