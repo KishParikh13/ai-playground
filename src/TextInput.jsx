@@ -38,7 +38,7 @@ function TextInput (props) {
             :
             <>
             <div className="whitespace-nowrap ml-2 text-white bg-gray-700 font-medium rounded-lg text-sm px-8 py-4 mr-2 mb-2">
-              Loading...
+              {props.loading < 100 ? props.loading : 100}%
             </div>
             </>
         }

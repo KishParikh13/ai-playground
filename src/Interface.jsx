@@ -19,7 +19,7 @@ function Interface (props) {
         var xhr = new XMLHttpRequest();
         xhr.open("POST", url);
         xhr.setRequestHeader("Content-Type", "application/json");
-        xhr.setRequestHeader("Authorization", "Bearer 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");
+        xhr.setRequestHeader("Authorization", "Bearer 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");
         xhr.upload.addEventListener("progress", function (event) {
             if (event.lengthComputable) {
                 setLoading(event.loaded / event.total * 100 | 5);
@@ -68,18 +68,20 @@ function Interface (props) {
 
     return (
         <div className="">
-            <section className="py-8">
+            <section className="py-16">
                 <div className="container mx-auto max-w-4xl px-4">
+                    <p className='text-xl text-gray-700 mb-4'>{props.description}</p>
                     <TextInput loading={loading} setLoading={value => setLoading(value)} setInput={value => setInput(value)} handleSubmit={e => generateResponses(input, responses)} />
                     <p className="text-sm text-red-700">{error}</p>
-                    <div className=" mt-8 ">
-                        <h2 className="mb-2 font-semibold text-gray-500 dark:text-gray-400">Matching Responses ({ responses ? responses.filter(response => response.prompt == input).length : 0}):</h2>
+                    <div className={" mt-8 flex flex-col gap-y-8" + (responses.length > 0 ? "" : "hidden")}>
+
+                        {/* <h2 className="mb-2 font-semibold text-gray-500 dark:text-gray-400">Matching Responses ({ responses ? responses.filter(response => response.prompt == input).length : 0}):</h2> */}
                         { templateType == "text" ?
                             <div className="space-y-1 text-lg flex flex-col gap-y-2 ">
                             {
                                 responses.filter(response => response.prompt == input).map((response, i) => (
                                     <div key={i} className=""><div key={i} className="">
-                                        <p><b>{response.prompt}</b> {response.text}</p></div>
+                                        <p className=''>{response.prompt}<mark className='bg-yellow-200'>{response.text}</mark></p></div>
                                     </div>
                                 ))
                             }
@@ -89,17 +91,15 @@ function Interface (props) {
                             {
                                 responses.filter(response => response.prompt == input).map((response, i) => (
                                     <div key={i} className="">
-                                        <img src={response.url} alt={response.prompt} />
+                                        <img className="bg-indigo-800" src={response.url} alt={response.prompt} />
                                     </div>
                                 ))
                             }
                             </div>
                         }
-                    </div>
-                    <div className=" mt-8 ">
-                        <h2 className="mb-2 font-semibold text-gray-500 dark:text-gray-400">Past Reponses ({ responses ? responses.filter(response => response.prompt != input).length : 0}):</h2>
+                        {/* <h2 className="mt-6 mb-2 font-semibold text-gray-500 dark:text-gray-400">Past Reponses ({ responses ? responses.filter(response => response.prompt != input).length : 0}):</h2> */}
                         { templateType == "text" ?
-                            <div className="space-y-1 text-lg flex flex-col gap-y-2 ">
+                            <div className=" space-y-1 text-lg flex flex-col gap-y-2 ">
                             {
                                 responses.filter(response => response.prompt !== input).map((response, i) => (
                                     <div key={i} className=""><div key={i} className="">
