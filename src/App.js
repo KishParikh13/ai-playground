@@ -64,14 +64,14 @@ function App() {
             <h3>Apps:</h3>
             <div className={"grid grid-cols-2 gap-4  mt-4 -ml-1"}>
               {apps.map((app, i) => (
-                <div className={" p-8 transition-all duration-100 rounded-md bg-gray-200 text-gray-700  hover:bg-gray-800 hover:text-white  cursor-pointer" } key={i} onClick={e => setSelectedApp(i)}>
+                <div className={" p-8 transition-all duration-500 rounded-md bg-gray-200 text-gray-700  hover:bg-gray-600 hover:text-white  cursor-pointer" } key={i} onClick={e => setSelectedApp(i)}>
                   <h4 className='font-bold text-lg'>{app.name}</h4>
                   <p>{app.description}</p>
                 </div>
               ))}
             </div>
           <p className="text-lg mt-8">
-            Built by Kish Parikh. View code on Github.
+            Built by Kish Parikh. View code on <a className="text-blue-600" href="https://github.com/KishParikh13/ai-playground" target="_blank">Github</a>.
           </p>
         </div>
       </section>
