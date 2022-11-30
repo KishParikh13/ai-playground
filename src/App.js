@@ -7,7 +7,7 @@ function App() {
 
   const apps = [
     {
-      name: "OpenAI - Autocomplete",
+      name: "Autocomplete",
       description: "Autocomplete text using OpenAI's GPT-3 API.",
       templateType: "text",
       url: "https://api.openai.com/v1/completions",
@@ -16,7 +16,7 @@ function App() {
       request: `{"model": "text-davinci-002", "temperature": 1.0, "max_tokens": 48, "n": 3, "top_p": 1, "frequency_penalty": 0.75, "presence_penalty": 0}`
     },
     {
-      name: "OpenAI - Image Generator",
+      name: "Image Generator",
       description: "Generate images using OpenAI's GPT-3 API. Turn text into pictures with little effort.",
       templateType: "image",
       numRequestsDefaults: 3,
@@ -24,7 +24,7 @@ function App() {
       request: `{ "n": 3, "size": "256x256" }`
     },
     {
-      name: "OpenAI - Sentiment Analyzer",
+      name: "Sentiment Analyzer",
       description: "Enter a phrase to have it mapped to an color.",
       templateType: "card",
       numRequestsDefaults: 1,
@@ -33,7 +33,7 @@ function App() {
       request: `{"model": "text-davinci-003", "temperature": 1.0, "max_tokens": 48, "n": 3, "top_p": 1, "frequency_penalty": 0.75, "presence_penalty": 0}`
     },
     {
-      name: "OpenAI - Custom Prompt",
+      name: "Custom Prompt",
       description: "Tell GPT-3 what you want it to do. Internet search a topic, write a story, or even write a program.",
       templateType: "table",
       numRequestsDefaults: 1,
@@ -56,8 +56,8 @@ function App() {
   return (
     <div className="">
       <header className="py-4 bg-gray-100">
-        <div className="container mx-auto max-w-4xl px-4">
-          <h1 className=" font-bold text-xl px-3">{ selectedApp > -1 ? apps[selectedApp].name : "Overview" }</h1>
+        <div className="container mx-auto max-w-6xl px-4">
+          <h1 className=" font-bold text-xl px-3">{ "AI Playground" }</h1>
           <div className="flex gap-x-2 gap-y-1 flex-wrap text-gray-500 mt-4 -ml-1">
             <div className={"text-md px-4 py-1 rounded-full cursor-pointer" + (selectedApp == -1 ? " bg-gray-800 text-white " : "")} onClick={e => selectApp(-1)}>Overview</div>
             {apps.map((app, i) => (
@@ -68,7 +68,7 @@ function App() {
       </header>
 
       <section className={"py-8 " + (selectedApp == -1 ? "  " : "  hidden ")}>
-        <div className='container mx-auto max-w-4xl p-8'>
+        <div className='container mx-auto max-w-6xl p-8'>
           <h2 className="text-2xl font-bold mb-8">A lightweight frontend for AI prompting</h2>
           <p className="text-lg mb-4">
             A simple interface to interact with an AI API, built flexible and configurable on purpose.
@@ -90,7 +90,7 @@ function App() {
       </section>
 
       <section className={"py-8 " + (selectedApp > -1 ? "  " : "  hidden ")}>
-        <div className='container mx-auto max-w-4xl px-6'>
+        <div className='container mx-auto max-w-6xl px-6'>
           {apps.map((app, i) => (
             <div key={i} className={((selectedApp == i && selectedApp != -1) ? "" : " hidden ")}>
               <Interface description={app.description} promptSupport={app.promptSupport} requestData={app.request} numRequestsDefaults={app.numRequestsDefaults} model={app.model} templateType={app.templateType} url={app.url} numResponses={app.numResponses} />
