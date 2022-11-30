@@ -24,7 +24,7 @@ function App() {
     {
       name: "OpenAI - Sentiment Analyzer",
       description: "Enter a phrase to have it analyzed for emotionality.",
-      templateType: "text",
+      templateType: "card",
       url: "https://api.openai.com/v1/completions",
       promptSupport: "\n The sentiment of the previous text: ",
       request: `{"model": "text-davinci-003", "temperature": 1.0, "max_tokens": 48, "n": 3, "top_p": 1, "frequency_penalty": 0.75, "presence_penalty": 0}`
@@ -41,7 +41,6 @@ function App() {
 
   return (
     <div className="">
-
       <header className="py-4 bg-gray-100">
         <div className="container mx-auto max-w-4xl px-4">
           <h1 className=" font-bold text-xl px-3">{ selectedApp > -1 ? apps[selectedApp].name : "Overview" }</h1>
@@ -54,8 +53,8 @@ function App() {
         </div>
       </header>
 
-      <section className={"p-8 pt-16 " + (selectedApp == -1 ? "  " : "  hidden ")}>
-        <div className='container mx-auto max-w-4xl px-4'>
+      <section className={"py-8 " + (selectedApp == -1 ? "  " : "  hidden ")}>
+        <div className='container mx-auto max-w-4xl p-8'>
           <h2 className="text-2xl font-bold mb-8">A lightweight frontend for AI prompting</h2>
           <p className="text-lg mb-4">
             A simple interface to interact with an AI API, built flexible and configurable on purpose.
@@ -76,11 +75,15 @@ function App() {
         </div>
       </section>
 
-      {apps.map((app, i) => (
-        <div key={i} className={((selectedApp == i && selectedApp != -1) ? "" : " hidden ")}>
-          <Interface description={app.description} promptSupport={app.promptSupport} requestData={app.request} model={app.model} templateType={app.templateType} url={app.url} numResponses={app.numResponses} />
+      <section className={"py-8 " + (selectedApp > -1 ? "  " : "  hidden ")}>
+        <div className='container mx-auto max-w-4xl px-6'>
+          {apps.map((app, i) => (
+            <div key={i} className={((selectedApp == i && selectedApp != -1) ? "" : " hidden ")}>
+              <Interface description={app.description} promptSupport={app.promptSupport} requestData={app.request} model={app.model} templateType={app.templateType} url={app.url} numResponses={app.numResponses} />
+            </div>
+          ))}
         </div>
-      ))}
+      </section>
     </div>
   );
 }
