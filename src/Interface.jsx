@@ -24,11 +24,10 @@ function Interface (props) {
         xhr.setRequestHeader("Authorization", `Bearer ${process.env.REACT_APP_OPENAI_API_KEY}`);
         xhr.upload.addEventListener("progress", function (event) {
             if (event.lengthComputable) {
-                setLoading((event.loaded / event.total * 100) | 5);
+                let progress = (event.loaded / event.total * 100) | 5
+                if (progress > 100) progress = 100
+                setLoading(progress);
             }
-        });
-        xhr.upload.addEventListener("load", function (event) {
-            setLoading(100);
         });
 
         xhr.onreadystatechange = function () {
@@ -38,7 +37,7 @@ function Interface (props) {
                 
                 if (xhr.status === 0 || (xhr.status >= 200 && xhr.status < 400)) {
                     var newResponses;
-                    if (templateType == "text" || templateType == "card") {
+                    if (templateType == "text" || templateType == "card" || templateType == "table") {
                         newResponses = open_ai_response.choices
                     } else {
                         newResponses = open_ai_response.data
@@ -75,7 +74,7 @@ function Interface (props) {
     return (
         <div className="">
             <p className='text-xl text-gray-700 mb-4'>{props.description}</p>
-            <TextInput initialNumResponses={3} handleNumResponsesInput={n => setNumResponsesInput(n)} loading={loading} setLoading={value => setLoading(value)} setInput={value => setInput(value)} handleSubmit={e => generateResponses(input, responses)} />
+            <TextInput initialNumResponses={props.numRequestsDefaults} handleNumResponsesInput={n => setNumResponsesInput(n)} loading={loading} setLoading={value => setLoading(value)} setInput={value => setInput(value)} handleSubmit={e => generateResponses(input, responses)} />
             <p className="text-sm text-red-700">{error}</p>
             <div className={" mt-8 flex flex-col gap-y-8 " + (responses.length > 0 ? "" : "hidden")}>
                 <ResponseList isMatching={true} templateType={templateType} responses={responses.filter(response => response.prompt == input)} />

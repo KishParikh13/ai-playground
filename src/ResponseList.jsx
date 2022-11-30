@@ -20,9 +20,16 @@ function ResponseList (props) {
                 );
             case 'card':
                 return (
-                    <div className='bg-gray-100'>
-                        <p className='p-4'>{response.prompt}</p>
-                        <p className='p-4'>{response.text}</p>
+                    <div className='flex flex-row border rounded-md overflow-hidden'>
+                        <p className='p-4 bg-gray-100 flex-grow'>{response.prompt}</p>
+                        <p className={`p-4 px-8 bg-${response.text.split(",")[1].trim().toLowerCase().replace(/[.,\/#!$%\^&\*;:{}=\-_`~()]/g,"")}-600 text-white`}>{response.text.trim().split(",")[0]}</p>
+                    </div>
+                )
+            case 'table':
+                return (
+                    <div className='flex flex-col  border rounded-md overflow-hidden'>
+                        <p className='bg-gray-200  p-4'>{response.prompt}</p>
+                        <p className='p-4 text-lg'>{response.text}</p>
                     </div>
                 )
             default:
@@ -41,6 +48,9 @@ function ResponseList (props) {
         },
         "image": {
             listStyle: " space-y-1 text-lg grid grid-cols-3 gap-4  ",
+        },
+        "table": {
+            listStyle: "space-y-1 text-lg flex flex-col gap-y-2 ",
         },
         "card": {
             listStyle: "space-y-1 text-lg flex flex-col gap-y-2 ",
