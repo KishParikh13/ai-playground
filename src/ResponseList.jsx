@@ -32,6 +32,13 @@ function ResponseList (props) {
                         <p className='p-4 text-lg'>{response.text}</p>
                     </div>
                 )
+            case 'chat':
+                return (
+                    <div className='flex flex-col p-8 gap-y-4 overflow-hidden'>
+                        <p className='p-4 text-md bg-gray-800 text-white rounded-lg rounded-br-none m-2 max-w-[85%] ml-auto'>{response.prompt}</p>
+                        <p className='p-4 text-lg bg-blue-600 text-white rounded-lg rounded-bl-none m-2 max-w-[85%] mr-auto'>{response.text}</p>
+                    </div>
+                )
             default:
                 return (
                     <div className='bg-gray-100'>
@@ -51,6 +58,9 @@ function ResponseList (props) {
         },
         "table": {
             listStyle: "space-y-1 text-lg flex flex-col gap-y-2 ",
+        },
+        "chat": {
+            listStyle: "space-y-1 gap-y-2 ",
         },
         "card": {
             listStyle: "space-y-1 text-lg flex flex-col gap-y-2 ",

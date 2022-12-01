@@ -40,6 +40,15 @@ function App() {
       url: "https://api.openai.com/v1/completions",
       promptSupport: null,
       request: `{"model": "text-davinci-003", "temperature": 0.5, "max_tokens": 128, "n": 1, "top_p": 1, "frequency_penalty": 0.75, "presence_penalty": 0}`
+    },
+    {
+      name: "Chatbot",
+      description: "Have a conversation with an AI chatbot. It's like talking to a human, but better. (This is a work in progress.)",
+      templateType: "chat",
+      numRequestsDefaults: 1,
+      url: "https://api.openai.com/v1/completions",
+      promptSupport: "You are Alan Watts the philosopher. You are helping a 22 year old who lacks motivation and direction, but wants to find happiness. Respond to his messages kindly with a philosophical tangent to what he said in the previous message.",
+      request: `{"model": "text-davinci-003", "temperature": 0.9, "max_tokens": 150, "n": 1, "top_p": 1, "frequency_penalty": 0, "presence_penalty": 0.6, "stop": [" Human:", " AI:"]}`
     }
   ]
 

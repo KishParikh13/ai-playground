@@ -37,7 +37,7 @@ function Interface (props) {
                 
                 if (xhr.status === 0 || (xhr.status >= 200 && xhr.status < 400)) {
                     var newResponses;
-                    if (templateType == "text" || templateType == "card" || templateType == "table") {
+                    if (templateType == "text" || templateType == "card" || templateType == "table" || templateType == "chat") {
                         newResponses = open_ai_response.choices
                     } else {
                         newResponses = open_ai_response.data
